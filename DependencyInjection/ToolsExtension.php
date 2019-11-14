@@ -2,9 +2,10 @@
 
 namespace Cornerstones\ToolsBundle\DependencyInjection;
 
-use Cornerstones\ToolsBundle\Command\TestCommand;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class ToolsExtension extends Extension
 {
@@ -12,13 +13,9 @@ class ToolsExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-        $commandDefine = (new Definition(
-            TestCommand::class
-        ))->setPublic(true);
-        $container->setDefinition('cornerstones.command_test', $commandDefine);
     }
     public function getAlias()
     {
-        return 'doctrine_cache';
+        return 'cornerstones_tools';
     }
 }
