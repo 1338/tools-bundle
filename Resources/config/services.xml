@@ -3,9 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services
         http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="cornerstones.tools_bundle.command.test_command" class="Cornerstones\ToolsBundle\Command\TestCommand" public="true">
-          <tag name="console.command" command="csm:test" />
-        </service>
-    </services>
+        <defaults autowire="true" autoconfigure="true" public="false" />
+            <prototype
+                namespace="Cornerstones\ToolsBundle\"
+                resource="../../*"
+                exclude="../../*/{Entity,Migrations,Tests}" />
+        <services>
+            <service id="Cornerstones\ToolsBundle\Command\TestCommand" public="true">
+            <tag name="console.command" command="csm:test" />
+        </services>
 </container>
