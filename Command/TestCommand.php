@@ -13,7 +13,8 @@ class TestCommand extends Command
 
     protected function configure()
     {
-        // ...
+        $this->setName('csm:test')
+          ->setDescription('Testing');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
